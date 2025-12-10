@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DLEC Electrical – Electrical Services in Hampshire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root{
+      --blue:#2563eb;
+      --blue-soft:#e0f2fe;
+      --blue-deep:#1d4ed8;
+      --navy:#020617;
+      --dark:#111827;
+      --muted:#6b7280;
+      --bg:#f3f4f6;
+      --radius:20px;
+      --shadow:0 18px 40px rgba(15,23,42,.22);
+    }
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+    }
+    body{background:var(--bg);color:var(--dark);}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+    section{padding:80px 8%;}
+
+    /* TOP BAR */
+    .topbar{
+      background:var(--navy);color:#e5e7eb;
+      padding:6px 8%;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:.85rem;
+    }
+    .topbar a{color:#e5e7eb;}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:30;
+      background:#ffffffd9;
+      backdrop-filter:blur(18px);
+      padding:14px 8%;
+      display:flex;justify-content:space-between;align-items:center;
+      box-shadow:0 8px 25px rgba(15,23,42,.08);
+    }
+    .brand{display:flex;align-items:center;gap:14px;}
+    .brand-logo{
+      width:80px;height:60px;
+      background:#ffffff;
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 24px rgba(15,23,42,.25);
+      border:1px solid #e5e7eb;
+    }
+    .brand-logo img{width:95%;height:100%;object-fit:contain;}
+    .brand-name{font-weight:800;font-size:1.05rem;}
+    .brand-sub{font-size:.8rem;color:var(--muted);}
+    nav{display:flex;gap:1.5rem;font-size:.9rem;}
+    nav a{
+      font-weight:600;color:#1f2937;
+      position:relative;padding-bottom:2px;
+    }
+    nav a::after{
+      content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;
+      border-radius:999px;background:var(--blue);transition:.25s;
+    }
+    nav a:hover::after{width:100%;}
+    .nav-cta{
+      background:linear-gradient(120deg,var(--blue),var(--blue-deep));
+      color:#fff;
+      padding:8px 18px;border-radius:999px;
+      font-size:.85rem;font-weight:700;
+      display:inline-flex;align-items:center;gap:6px;
+      box-shadow:0 14px 32px rgba(37,99,235,.45);
+    }
+
+    /* HERO */
+    .hero{
+      padding:90px 8% 80px;
+      background:radial-gradient(circle at top,#e0edff,#f9fafb 55%,#eef2ff);
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+      gap:40px;align-items:center;
+    }
+    .hero h1{font-size:clamp(2rem,3vw,2.6rem);margin-bottom:10px;}
+    .hero h1 span{color:var(--blue);}
+    .hero p{color:var(--muted);margin-bottom:22px;font-size:1rem;max-width:420px;}
+    .hero-cta{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 26px;border-radius:999px;
+      background:linear-gradient(120deg,var(--blue),var(--blue-deep));
+      color:#fff;font-weight:700;
+      box-shadow:var(--shadow);
+    }
+    .hero-img{
+      border-radius:26px;overflow:hidden;
+      box-shadow:var(--shadow);
+      max-height:340px;
+    }
+    .hero-img img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+      transition:transform .8s ease;
+    }
+    .hero-img:hover img{
+      transform:scale(1.06);
+    }
+
+    /* ADDRESS */
+    .address-note{font-size:.85rem;color:var(--muted);margin-bottom:1rem;}
+    .address-block{line-height:1.6;font-size:.95rem;}
+    .map-link{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-top:16px;padding:8px 14px;border-radius:999px;
+      background:var(--blue-soft);color:#0f172a;
+      font-size:.85rem;font-weight:600;
+    }
+
+    /* SECTIONS GENERAL */
+    .section-head{text-align:center;margin-bottom:40px;}
+    .section-head h2{font-size:1.6rem;margin-bottom:4px;}
+    .section-head p{color:var(--muted);font-size:.95rem;}
+
+    /* SERVICES */
+    .services{
+      background:#f9fafb;
+    }
+    .services-grid{
+      display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+      gap:32px;align-items:center;
+    }
+    .service-list li{margin-bottom:10px;color:var(--muted);font-size:.95rem;}
+    .service-photo{
+      border-radius:24px;overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .service-photo img{
+      width:100%;height:100%;object-fit:cover;
+      transform:scale(1.02);transition:transform .8s ease;
+    }
+    .service-photo:hover img{transform:scale(1.06);}
+
+    /* REVIEWS */
+    .reviews-wrap{
+      display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.05fr);
+      gap:32px;align-items:center;
+    }
+    .review-card{
+      background:#fff;border-radius:24px;
+      padding:22px;box-shadow:0 14px 30px rgba(15,23,42,.14);
+      margin-bottom:18px;
+    }
+    .review-name{font-weight:700;margin-bottom:4px;font-size:.95rem;}
+    .review-stars{color:#fbbf24;font-size:.9rem;margin-bottom:6px;}
+    .review-card p{font-size:.9rem;color:var(--muted);}
+    .reviews-photo{
+      border-radius:26px;overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .reviews-photo img{
+      width:100%;height:100%;object-fit:cover;
+      transform:scale(1.02);transition:transform .8s ease;
+    }
+    .reviews-photo:hover img{transform:scale(1.06);}
+
+    /* QUOTE FORM */
+    .quote-section{
+      background:#f9fafb;padding:60px 8% 80px;border-top:1px solid #e5e7eb;
+    }
+    .quote-wrapper{
+      max-width:780px;margin:0 auto;
+      background:#ffffff;border-radius:26px;
+      padding:28px 24px 24px;box-shadow:0 16px 40px rgba(15,23,42,.18);
+    }
+    .quote-wrapper h3{margin-bottom:6px;}
+    .field{margin-bottom:12px;}
+    .field label{font-size:.8rem;color:var(--muted);display:block;margin-bottom:4px;}
+    .field input,
+    .field textarea,
+    .field select{
+      width:100%;padding:9px 10px;border-radius:10px;
+      border:1px solid #cbd5e1;font-size:.9rem;outline:none;
+      background:#f9fafb;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus{
+      border-color:var(--blue);box-shadow:0 0 0 1px rgba(37,99,235,.25);
+      background:#ffffff;
+    }
+    textarea{resize:vertical;min-height:80px;}
+    .cta-btn{
+      background:linear-gradient(120deg,var(--blue),var(--blue-deep));
+      border:none;
+      color:#fff;padding:10px 22px;border-radius:999px;
+      font-size:.9rem;font-weight:700;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      box-shadow:0 16px 34px rgba(37,99,235,.42);
+    }
+
+    /* FOOTER */
+    .footer-top{
+      background:#02152f;color:#e5e7eb;
+      padding:60px 8% 40px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:40px;
+    }
+    .footer-col h4{font-size:.95rem;margin-bottom:.8rem;}
+    .footer-col p,.footer-link{font-size:.86rem;color:#cbd5e1;line-height:1.8;}
+    .footer-link:hover{color:#fff;}
+    .bottom-footer{
+      background:var(--navy);color:#9ca3af;
+      font-size:.78rem;text-align:center;padding:14px 8%;
+    }
+
+    /* ANIMATION (scroll fade-up) */
+    [data-animate]{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .7s ease,transform .7s ease;
+    }
+    [data-animate].in-view{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media(max-width:900px){
+      nav{display:none;}
+      header{flex-wrap:wrap;gap:10px;}
+      .hero{grid-template-columns:minmax(0,1fr);padding-top:100px;}
+      .hero-img{order:-1;margin-bottom:18px;}
+      .services-grid,.reviews-wrap{grid-template-columns:minmax(0,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>Professional electrician in Hampshire</span>
+    <span>
+      <a href="mailto:info@dlecelectrical.com">info@dlecelectrical.com</a> ·
+      <a href="tel:07900937270">07900 937 270</a>
+    </span>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand" data-animate>
+      <div class="brand-logo">
+        <!-- logo file -->
+        <img src="logo.png" alt="DLEC Electrical logo">
+      </div>
+      <div>
+        <div class="brand-name">DLEC Electrical</div>
+        <div class="brand-sub">Electrical services in Hampshire</div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#address">Address</a>
+      <a href="#quote">Get a Quote</a>
+    </nav>
+
+    <a href="#quote" class="nav-cta">
+      <i class="fa-solid fa-envelope"></i> Get a Quote
+    </a>
+  </header>
+
+  <!-- HERO / ABOUT -->
+  <section class="hero" id="about" data-animate>
+    <div>
+      <h1>Looking for <span>electrical services</span> in Hampshire?</h1>
+      <p>Speak to us today to request a quote. Fully qualified electricians providing domestic and commercial electrical services across Southampton and Hampshire.</p>
+      <a href="#quote" class="hero-cta">
+        <i class="fa-solid fa-paper-plane"></i> Request a Quote
+      </a>
+    </div>
+
+    <div class="hero-img">
+      <!-- hero image -->
+      <img src="home.png" alt="DLEC Electrical – About image">
+    </div>
+  </section>
+
+  <!-- BUSINESS ADDRESS -->
+  <section id="address" data-animate>
+    <h2>Business Address</h2>
+    <p class="address-note">
+      Please note, our business address is purely for correspondence. We do not have a public office.
+    </p>
+    <div class="address-block">
+      <strong>DLEC Electrical Limited,</strong><br>
+      Unit 6,<br>
+      Mitchell Close,<br>
+      Southampton,<br>
+      Hampshire,<br>
+      PO15 5SE
+    </div>
+
+    <!-- Google Maps open -->
+    <a class="map-link"
+       href="https://www.google.com/maps?q=Unit+6,+Mitchell+Close,+Southampton,+PO15+5SE"
+       target="_blank">
+      <i class="fa-solid fa-map-location-dot"></i>
+      Open in Google Maps
+    </a>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="services" data-animate>
+    <div class="section-head">
+      <h2>Primary Services</h2>
+      <p>Electrical services in Southampton and Hampshire.</p>
+    </div>
+
+    <div class="services-grid">
+      <ul class="service-list">
+        <li>• Electrician Services – installations, repairs & maintenance.</li>
+        <li>• Commercial & Business – offices, shops and industrial units.</li>
+        <li>• Safety Inspections – testing, certificates and reports.</li>
+        <li>• All Services – bespoke electrical solutions for your property.</li>
+      </ul>
+
+      <div class="service-photo">
+        <img src="service.png" alt="DLEC Electrical services image">
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section id="reviews" data-animate>
+    <div class="section-head">
+      <h2>What Our Customers Say</h2>
+      <p>Recent reviews from clients across Hampshire.</p>
+    </div>
+
+    <div class="reviews-wrap">
+      <div>
+        <div class="review-card">
+          <div class="review-name">John Smith – Southampton</div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Excellent service, very professional and tidy. Would highly recommend DLEC Electrical."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-name">Sarah W. – Hampshire</div>
+          <div class="review-stars">★★★★★</div>
+          <p>"Quick response and great communication throughout. We will definitely use them again."</p>
+        </div>
+      </div>
+
+      <div class="reviews-photo">
+        <img src="review.png" alt="Customer reviews image">
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUEST A QUOTE FORM -->
+  <section class="quote-section" id="quote" data-animate>
+    <div class="quote-wrapper">
+      <h3>Request a Quote</h3>
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:12px;">
+        Tell us about your electrical needs – as much or as little detail as you have.
+      </p>
+
+      <form action="https://formsubmit.co/info@dlecelectrical.com" method="POST">
+        <!-- Security & Settings -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_subject" value="New Lead from Website">
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="Name" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" type="text" name="Phone" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="Email" required>
+        </div>
+
+        <div class="field">
+          <label for="service">Service Needed</label>
+          <select id="service" name="Service">
+            <option value="">Select…</option>
+            <option>Domestic Electrical</option>
+            <option>Commercial Electrical</option>
+            <option>Safety Inspection</option>
+            <option>Emergency Repair</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Tell us about your electrical needs</label>
+          <textarea id="message" name="Message" required></textarea>
+        </div>
+
+        <button type="submit" class="cta-btn" style="width:100%;">
+          <i class="fa-solid fa-paper-plane"></i> Submit Form
+        </button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-top">
+    <div class="footer-col">
+      <h4>DLEC Electrical Limited</h4>
+      <p>Electrical services in Southampton and Hampshire.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Site Links</h4>
+      <a href="#about" class="footer-link">About</a><br>
+      <a href="#services" class="footer-link">Services</a><br>
+      <a href="#reviews" class="footer-link">Reviews</a><br>
+      <a href="#quote" class="footer-link">Contact / Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Primary Services</h4>
+      <p class="footer-link">Electrician Services</p>
+      <p class="footer-link">Commercial &amp; Business</p>
+      <p class="footer-link">Safety Inspections</p>
+      <p class="footer-link">All Services</p>
+    </div>
+  </div>
+
+  <div class="bottom-footer">
+    Website redesign demo for DLEC Electrical Limited · Electrician in Southampton and Hampshire
+  </div>
+
+  <!-- Scroll animation -->
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.2});
+
+    document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
+  </script>
+
+</body>
+</html>
